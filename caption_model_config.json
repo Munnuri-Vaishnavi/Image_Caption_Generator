@@ -1,0 +1,9 @@
+{
+  "feature_dim": 2048,
+  "embed_dim": 256,
+  "lstm_units": 512,
+  "vocab_size": 7738,
+  "max_length": 39,
+  "start_id": 3,
+  "end_id": 4
+}
