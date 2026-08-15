@@ -239,17 +239,18 @@ st.markdown(f"""
         color: {t['text']} !important;
     }}
 
-    /* Uploaded file preview chip (filename, size, remove button) shown after
-       a file is selected - separate element from the dropzone above */
-    [data-testid="stFileUploaderFile"],
-    [data-testid="stFileUploaderFileData"] {{
+    /* Uploaded file preview chip (filename, size, icon, remove button) - using a
+       prefix wildcard ([data-testid^="stFileUploader"]) to catch every internal
+       sub-element (icon box, filename, delete button) in one rule, rather than
+       naming each one individually and missing pieces like the file-type icon */
+    [data-testid^="stFileUploader"] {{
         background-color: {t['card']} !important;
         color: {t['text']} !important;
     }}
-    [data-testid="stFileUploaderFile"] *,
-    [data-testid="stFileUploaderFileData"] * {{
+    [data-testid^="stFileUploader"] * {{
         background-color: {t['card']} !important;
         color: {t['text']} !important;
+        fill: {t['text']} !important;
     }}
 
     .app-card {{
