@@ -200,10 +200,26 @@ st.markdown(f"""
         color: {t['text']} !important;
     }}
 
-    /* Expander */
+    /* Expander - wildcard + !important, since the clickable header/summary bar
+       has its own default white background that the plain rule above didn't override */
     [data-testid="stExpander"] {{
-        background-color: {t['card']};
+        background-color: {t['card']} !important;
         border-radius: 8px;
+    }}
+    [data-testid="stExpander"] * {{
+        background-color: {t['card']} !important;
+        color: {t['text']} !important;
+    }}
+    [data-testid="stExpander"] summary {{
+        background-color: {t['card']} !important;
+        color: {t['text']} !important;
+    }}
+    details {{
+        background-color: {t['card']} !important;
+    }}
+    summary {{
+        background-color: {t['card']} !important;
+        color: {t['text']} !important;
     }}
 
     /* Info / success / warning boxes */
@@ -220,6 +236,19 @@ st.markdown(f"""
         color: {t['text']} !important;
     }}
     [data-testid="stFileUploaderDropzoneInstructions"] {{
+        color: {t['text']} !important;
+    }}
+
+    /* Uploaded file preview chip (filename, size, remove button) shown after
+       a file is selected - separate element from the dropzone above */
+    [data-testid="stFileUploaderFile"],
+    [data-testid="stFileUploaderFileData"] {{
+        background-color: {t['card']} !important;
+        color: {t['text']} !important;
+    }}
+    [data-testid="stFileUploaderFile"] *,
+    [data-testid="stFileUploaderFileData"] * {{
+        background-color: {t['card']} !important;
         color: {t['text']} !important;
     }}
 
