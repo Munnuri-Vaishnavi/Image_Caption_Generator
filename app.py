@@ -101,17 +101,59 @@ st.markdown(f"""
        file_uploader's internal "Browse files" button all use it) */
     button[data-testid="baseButton-secondary"],
     button[data-testid="baseButton-primary"],
-    button[data-testid="baseButton-minimal"] {{
+    button[data-testid="baseButton-minimal"],
+    button[data-testid="stBaseButton-secondary"],
+    button[data-testid="stBaseButton-primary"],
+    button[data-testid="stBaseButton-minimal"],
+    button[data-testid="stBaseButton-secondaryFormSubmit"],
+    button[kind="secondary"],
+    button[kind="primary"],
+    button[kind="minimal"],
+    [data-testid="stButton"] button,
+    [data-testid="stDownloadButton"] button,
+    [data-testid="stFormSubmitButton"] button {{
         background-color: {t['card']} !important;
         color: {t['text']} !important;
         border: 1px solid {t['accent']} !important;
     }}
     button[data-testid="baseButton-secondary"]:hover,
     button[data-testid="baseButton-primary"]:hover,
-    button[data-testid="baseButton-minimal"]:hover {{
+    button[data-testid="baseButton-minimal"]:hover,
+    button[data-testid="stBaseButton-secondary"]:hover,
+    button[data-testid="stBaseButton-primary"]:hover,
+    button[data-testid="stBaseButton-minimal"]:hover,
+    button[kind="secondary"]:hover,
+    button[kind="primary"]:hover,
+    button[kind="minimal"]:hover,
+    [data-testid="stButton"] button:hover,
+    [data-testid="stDownloadButton"] button:hover {{
         background-color: {t['accent']} !important;
         color: #ffffff !important;
         border: 1px solid {t['accent']} !important;
+    }}
+
+    /* Disabled buttons (e.g. Download button before results exist) get their own
+       default styling in Streamlit that ignores the rules above - cover explicitly,
+       including aria-disabled since some Streamlit versions use that instead of
+       the plain HTML disabled attribute */
+    button:disabled, button[disabled], button[aria-disabled="true"],
+    [data-testid="stButton"] button:disabled,
+    [data-testid="stDownloadButton"] button:disabled,
+    [data-testid="stButton"] button[aria-disabled="true"],
+    [data-testid="stDownloadButton"] button[aria-disabled="true"] {{
+        background-color: {t['card']} !important;
+        color: {t['subtext']} !important;
+        border: 1px solid {t['subtext']} !important;
+        opacity: 0.6;
+    }}
+
+    /* Icons (e.g. download/speaker icons) inside buttons should inherit the theme
+       text color instead of defaulting to black/dark, which is invisible on dark bg */
+    button svg {{
+        fill: {t['text']} !important;
+    }}
+    button:disabled svg, button[disabled] svg {{
+        fill: {t['subtext']} !important;
     }}
 
     /* Tabs */
@@ -138,6 +180,22 @@ st.markdown(f"""
     li[data-baseweb="menu-item"]:hover {{
         background-color: {t['accent']} !important;
     }}
+
+    /* Dropdown option list, targeted via ARIA roles instead of data-baseweb attributes -
+       roles are far more stable across BaseWeb/Streamlit version changes than internal
+       data-* attribute names, which have already been renamed once in this project */
+    [role="listbox"] {{
+        background-color: {t['card']} !important;
+    }}
+    [role="option"] {{
+        background-color: {t['card']} !important;
+        color: {t['text']} !important;
+    }}
+    [role="option"]:hover, [role="option"][aria-selected="true"] {{
+        background-color: {t['accent']} !important;
+        color: #ffffff !important;
+    }}
+
     [data-testid="stSelectbox"] label {{
         color: {t['text']} !important;
     }}
