@@ -72,8 +72,6 @@ Trained on **[Flickr8k](https://www.kaggle.com/datasets/adityajn105/flickr8k)** 
 ├── runtime.txt                     # Pinned Python version for deployment
 ├── caption_model_config.json       # Model hyperparameters (vocab size, max length, etc.)
 ├── Flickr8k_word_index.json        # Tokenizer word→index mapping
-├── .streamlit/
-│   └── config.toml                 # App theme configuration
 └── samples/                        # Sample images for the "Try a sample image" tab
 ```
 
