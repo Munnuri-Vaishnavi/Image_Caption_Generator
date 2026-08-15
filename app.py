@@ -11,7 +11,7 @@ Run locally with:
 
 Expected files in the same folder as this script:
     ResNet50_LSTM_Flickr8k_caption_model.keras
-    Flickr8k_tokenizer.pkl
+    Flickr8k_word_index.json
     caption_model_config.json
     samples/               (a folder of pre-picked images - optional but recommended)
 
@@ -22,7 +22,6 @@ Additional packages needed beyond the core ones:
 import os
 import io
 import json
-import pickle
 
 import numpy as np
 import streamlit as st
@@ -37,7 +36,7 @@ from huggingface_hub import hf_hub_download
 HF_REPO_ID = "vaishnavi22092006/Caption_.Generator"
 HF_MODEL_FILENAME = "ResNet50_LSTM_Flickr8k_caption_model.keras"
 
-TOKENIZER_PATH = "Flickr8k_tokenizer.pkl"
+WORD_INDEX_PATH = "Flickr8k_word_index.json"
 CONFIG_PATH = "caption_model_config.json"
 SAMPLES_DIR = "samples"
 
@@ -226,8 +225,8 @@ def load_everything():
     with open(CONFIG_PATH) as f:
         config = json.load(f)
 
-    with open(TOKENIZER_PATH, "rb") as f:
-        tokenizer = pickle.load(f)
+    with open(WORD_INDEX_PATH) as f:
+        word_index = json.load(f)
 
     loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction="none")
 
@@ -253,9 +252,9 @@ def load_everything():
     resnet = ResNet50(weights="imagenet", include_top=False, pooling="avg")
     resnet.trainable = False
 
-    id_to_word = {idx: word for word, idx in tokenizer.word_index.items() if idx < config["vocab_size"]}
+    id_to_word = {idx: word for word, idx in word_index.items() if idx < config["vocab_size"]}
 
-    return caption_model, resnet, tokenizer, id_to_word, config
+    return caption_model, resnet, word_index, id_to_word, config
 
 
 # ---------- Core inference (mirrors the training notebook exactly) ----------
@@ -341,7 +340,7 @@ def score_to_confidence_pct(score):
 
 
 def generate_captions(pil_image):
-    caption_model, resnet, tokenizer, id_to_word, config = load_everything()
+    caption_model, resnet, word_index, id_to_word, config = load_everything()
     feature = image_to_feature(resnet, pil_image)
     return beam_search_captions_multi(caption_model, id_to_word, config, feature, num_results=3)
 
