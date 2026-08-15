@@ -230,9 +230,17 @@ st.markdown(f"""
         margin-top: 0.6rem;
     }}
 
-    /* Hide Streamlit's built-in image fullscreen/maximize icon */
-    button[title="View fullscreen"] {{
+    /* Hide Streamlit's built-in image fullscreen/maximize icon.
+       Several selectors, since the exact markup/attribute Streamlit uses for
+       this button has changed across versions - covering all known variants. */
+    button[title="View fullscreen"],
+    button[aria-label="View fullscreen"],
+    [data-testid="StyledFullScreenButton"],
+    [data-testid="stImageFullScreen"],
+    [data-testid="stElementToolbar"],
+    [data-testid="stFullScreenFrame"] button {{
         display: none !important;
+        visibility: hidden !important;
     }}
 </style>
 """, unsafe_allow_html=True)
