@@ -511,7 +511,7 @@ with tab1:
         img_col, result_col = st.columns([1, 1.3])
         pil_image = Image.open(uploaded_file)
         with img_col:
-            st.image(pil_image, use_column_width=True)
+            st.image(pil_image, use_container_width=True)
         with result_col:
             if st.button("Generate caption", type="primary", key="upload_btn"):
                 run_caption_generation("upload_result", pil_image)
@@ -537,7 +537,7 @@ with tab2:
             img_col, result_col = st.columns([1, 1.3])
             pil_image = Image.open(os.path.join(SAMPLES_DIR, selected_sample))
             with img_col:
-                st.image(pil_image, use_column_width=True)
+                st.image(pil_image, use_container_width=True)
             with result_col:
                 if st.button("Generate caption", type="primary", key="sample_btn"):
                     run_caption_generation("sample_result", pil_image)
