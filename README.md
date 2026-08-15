@@ -8,8 +8,10 @@ An end-to-end deep learning project that generates natural-language captions for
 
 ## 📸 Screenshots
 
-![Screenshot](https://github.com/user-attachments/assets/<img width="1920" height="1020" alt="Screenshot 2026-08-15 191822" src="https://github.com/user-attachments/assets/8927ddd7-3693-48d6-b56a-e7bdfc256875" />
-)
+![Screenshot](https://github.com/user-attachments/assets/<img width="1920" height="1020" alt="Screenshot 2026-08-15 191822" src="https://github.com/user-attachments/assets/8927ddd7-3693-48d6-b56a-e7bdfc256875" />)
+## 📸 Screenshots
+
+![App screenshot](https://github.com/user-attachments/assets/![Uploading Screenshot 2026-08-15 191919.png…]())
 
 
 
