@@ -8,10 +8,12 @@ An end-to-end deep learning project that generates natural-language captions for
 
 ## 📸 Screenshots
 
-<!-- Add screenshots here, e.g.: -->
-<!-- ![App screenshot](screenshots/demo.png) -->
+<!--![Uploading Screenshot 2026-08-15 191822.png…]()
+ -->
+<!--![Uploading image.png…]()
+ -->
 
-*(Add a few screenshots of the app in action here — the upload tab, a generated caption, and the sample-image tab work well.)*
+
 
 ---
 
